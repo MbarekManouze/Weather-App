@@ -1,6 +1,14 @@
 import React from 'react'
 import {Navbar} from '../components'
 import {Sun} from '../assets'
+import { Todaylist } from '../constants'
+
+// const Todayloop = ({logo, time, Temp}) => {
+//   <div className="rounded-lg m-2 w-full flex flex-row">
+//     <p className='text-white'>{time}</p>
+//   </div>
+
+// }
 
 const Weather = () => {
   return (
@@ -17,8 +25,12 @@ const Weather = () => {
         </div>
           <img src={Sun} className='w-[180px]'/>
       </div>
-      <div className=''>
-          
+      <div className='w-full rounded-lg m-2 w-full flex flex-row'>
+          {Todaylist.map((scoop) => {
+            // console.log(scoop.Temp);
+            // <Todayloop {...scoop}/>
+            <p className='text-white'>{scoop.Temp}</p>
+          })}
       </div>
     </div>
   )
