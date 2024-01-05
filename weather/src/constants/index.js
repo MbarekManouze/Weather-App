@@ -1,4 +1,4 @@
-import { CloudySun, Cloud, Sun } from "../assets";
+import { CloudySun, Cloud, Sun, Temp,Drop, Lsun, LWind, } from "../assets";
 
 export const Todaylist = [
     {
@@ -30,5 +30,28 @@ export const Todaylist = [
         time: "9:00 PM",
         logo: CloudySun,
         Temp: "30°",
+    },
+];
+
+export const AirCondition = [
+    {
+        desc: "Real feel",
+        img: Temp,
+        attribute: '30°',
+    },
+    {
+        desc: "Wind",
+        img: LWind,
+        attribute: "0.2km/h",
+    },
+    {
+        desc: "Chance of rain",
+        img: Drop,
+        attribute: "0%",
+    },
+    {
+        desc: "UV Index",
+        img: Lsun,
+        attribute: "3",
     },
 ];
