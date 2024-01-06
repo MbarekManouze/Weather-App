@@ -9,6 +9,8 @@ import Temp from './Temp.png'
 import Drop from './Drop.png'
 import Lsun from './lsun.png'
 import LWind from './lWind.png'
+import Storm from './Storm.png'
+import Rainy from './Rainy.png'
 
 
 export {
@@ -23,4 +25,6 @@ export {
     Drop,
     Lsun,
     LWind,
+    Storm,
+    Rainy,
 };
