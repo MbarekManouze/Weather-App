@@ -4,10 +4,10 @@ import {Routes, Route} from 'react-router-dom'
 
 const App = () => (
 
-  <div className=" bg-slate-950 h-screen">
+  <div className="">
     <div className="flex h-lvh space-x-8">
         <Leftbar/>
-      <div className='text-white'>
+      <div className='relative text-white flex flex-row flex-wrap w-full'>
         <Routes>
           <Route path="/Weather" element={<Weather/>} />
           <Route path="/Cities" element={<Cities/>} />

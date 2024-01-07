@@ -1,7 +1,7 @@
 import React from 'react'
 import {Navbar} from '../components'
 import {Sun} from '../assets'
-import { Todaylist, AirCondition } from '../constants'
+import { Todaylist, AirCondition, SevenDays } from '../constants'
 
 const Todayloop = ({logo, time, Temp}) => (
   <div className="flex flex-1 flex-col flex-wrap m-8 mt-12 mb-8 ">
@@ -26,10 +26,21 @@ const AirConditionloop = ({desc, img, attribute}) => (
   </div>
 )
 
-const SevenDaysloop = ({Day, img, description, High, low}) => (
+const SevenDaysloop = ({Day, img, description, High, Low}) => (
 
-  <div className=''>
-
+  <div className='flex flex-col w-full ml-8 m-4 mt-12'>
+    <div className="flex flex-row m-4 ">
+      <p className="font-semibold text-gray-500 mr-60">{Day}</p>
+      <div className="w-full flex flex-row space-x-3">
+        <img src={img} className="w-[35%] mr-2" />
+        <p className="text-xl font-bold mr-6">{description}</p>
+      </div>
+      <div className="flex flex-row w-full ml-60">
+        <p className="text-2xl font-bold">{High}</p>
+        <p className="font-semibold text-gray-500">/{Low}</p>
+      </div>
+    </div>
+    <div className="w-0.5 bg-slate-500 w-[85%] h-1 ml-9"></div>
   </div>
 
 )
@@ -40,39 +51,39 @@ const Weather = () => {
       <div className='w-full'>
         <Navbar/>
       </div>
-      <div className='relative w-full flex-wrap'>
-        <div className='w-full m-8 flex flex-row flex-wrap'>
-            <div className='flex flex-col'>
-              <h2 className='text-5xl font-bold '>Madrid</h2> <br></br>
-              <p className='font-light text-gray-500'>Chance of rain: 0%</p>
-              <br></br>
-              <p className='text-8xl font-bold'>31°</p>
-            </div>
-            <div className='ml-60'>
-              <img src={Sun} className="w-[180px] ml-52"/>
-            </div>
+      <div className="flex flex-row w-full">
+        <div className="w-1/2 flex flex-wrap flex-col ">
+          <div className='w-full m-8 flex'>
+              <div className='flex flex-col'>
+                <h2 className='text-5xl font-bold '>Madrid</h2> <br></br>
+                <p className='font-light text-gray-500'>Chance of rain: 0%</p>
+                <br></br>
+                <p className='text-8xl font-bold'>31°</p>
+              </div>
+              <div className='ml-60'>
+                <img src={Sun} className="w-[180px] ml-52"/>
+              </div>
+          </div>
+          <div className='w-full rounded-2xl bg-slate-800 flex flex-1 flex-wrap m-4'>
+            <h2 className='absolute m-4 font-semibold text-gray-500'>TODAY'S FORCAST</h2>
+              {Todaylist.map((scoop) => (
+                // <p className='text-white'>{scoop.Temp}</p>
+                <Todayloop {...scoop} />
+              ))}
+          </div>
+          <div className='w-full rounded-2xl bg-slate-800 flex flex-1 flex-wrap m-4'>
+            <p className='absolute m-4 ml-10 font-semibold text-gray-500'>AIR CONDITIONS</p>
+            {AirCondition.map((scoop) => (
+              <AirConditionloop {...scoop} />
+            ))}
+          </div>
         </div>
-        <div className='w-1/2 rounded-2xl bg-slate-800 flex flex-1 flex-wrap m-4'>
-          <h2 className='absolute m-4 font-semibold text-gray-500'>TODAY'S FORCAST</h2>
-            {Todaylist.map((scoop) => (
-              // <p className='text-white'>{scoop.Temp}</p>
-              <Todayloop {...scoop} />
+        <div className='w-full rounded-2xl bg-slate-800 flex flex-1 flex-col m-6 mx-12'>
+           <p className='absolute m-12 ml-10 mt-4 font-semibold text-gray-500'>7-DAY FORECAST</p>
+            {SevenDays.map((scoop) => (
+              <SevenDaysloop {...scoop} />
             ))}
         </div>
-        <div className='w-1/2 rounded-2xl bg-slate-800 flex flex-1 flex-wrap m-4'>
-          <p className='absolute m-4 ml-10 font-semibold text-gray-500'>AIR CONDITIONS</p>
-          {AirCondition.map((scoop) => (
-            <AirConditionloop {...scoop} />
-          ))}
-        </div>
-      </div>
-      <div className='rounded-2xl bg-slate-8 w-full '>
-        <div className=' right-0'>
-          <p className=''>7-DAYS FORECAST</p>
-        </div>
-          {/* {SevenDays.map((scoop) => (
-            <SevenDaysloop {...scoop} />
-          ))} */}
       </div>
     </div>
   )

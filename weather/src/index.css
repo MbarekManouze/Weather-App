@@ -3,7 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body{
+  background-color: #11101d;
+}
 :root {
   --black-gradient: linear-gradient(
     144.39deg,
@@ -16,6 +18,7 @@
 
 * {
   scroll-behavior: smooth;
+  
 }
 
 .text-gradient {
