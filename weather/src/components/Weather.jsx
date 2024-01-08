@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Navbar} from '../components'
 import {Sun} from '../assets'
 import { Todaylist, AirCondition, SevenDays } from '../constants'
+import axios from 'axios';
+
 
 const Todayloop = ({logo, time, Temp}) => (
   <div className="flex flex-1 flex-col flex-wrap m-8 mt-12 mb-8 ">
@@ -46,10 +48,34 @@ const SevenDaysloop = ({Day, img, description, High, Low}) => (
 )
 
 const Weather = () => {
+
+
+  const [searchTerm, setSearchTerm] = useState('Rabat');
+
+  const fetchData = async () => {
+    try{
+      const Data = await axios.get(`http://api.weatherapi.com/v1/current.json?key=ddd4d75367394afea78144106232912&q=${searchTerm}&aqi=no`);
+      console.log("Data : ", Data);
+    }
+    catch(error){
+      console.log("error : ", error);
+    }
+  }
+  // useEffect(() => {
+    
+  // }, []);
+  
+  const HandleOnsearch = (City) => {
+    console.log(City);
+    setSearchTerm(City);
+    fetchData();
+  }
+
+
   return (
     <div className='w-full'>
       <div className='w-full'>
-        <Navbar/>
+        <Navbar onSearch={HandleOnsearch} />
       </div>
       <div className="flex flex-row w-full">
         <div className="w-1/2 flex flex-wrap flex-col ">
