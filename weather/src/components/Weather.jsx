@@ -4,7 +4,12 @@ import {Sun} from '../assets'
 import { Todaylist, AirCondition, SevenDays } from '../constants'
 import axios from 'axios';
 
+// I can see  you are using vite, which has path aliasing
+// as in something like ../constants can become $lib/constants
+// this is good for meaningful paths
 
+// default values in javascript are helpful so that you don't need to always provide arguemnts to components
+// especially since you are using .jsx instead of .tsx which checks types
 const Todayloop = ({logo, time, Temp}) => (
   <div className="flex flex-1 flex-col flex-wrap m-8 mt-12 mb-8 ">
     <div >
@@ -28,6 +33,8 @@ const AirConditionloop = ({desc, img, attribute}) => (
   </div>
 )
 
+// These componenets do not have any documentation to them nor to the props
+// Documentation is not obligatory but preferred even if it's a one man code base
 const SevenDaysloop = ({Day, img, description, High, Low}) => (
 
   <div className='flex flex-col w-full ml-8 m-4 mt-12'>
@@ -49,26 +56,57 @@ const SevenDaysloop = ({Day, img, description, High, Low}) => (
 
 const Weather = () => {
 
+  // undefined is not very descriptive, limit the possible values of your variables
+  // so you can think about them easily
+  const [searchTerm, setSearchTerm] = useState(undefined); 
+  const [data, setData] = useState();
 
-  const [searchTerm, setSearchTerm] = useState('Rabat');
-
+  
   const fetchData = async () => {
     try{
-      const Data = await axios.get(`http://api.weatherapi.com/v1/current.json?key=ddd4d75367394afea78144106232912&q=${searchTerm}&aqi=no`);
-      console.log("Data : ", Data);
+      if (searchTerm)
+      {
+        console.log("searchTerm, ", searchTerm);
+        const Data = await axios.get(`http://api.weatherapi.com/v1/current.json?key=ddd4d75367394afea78144106232912&q=${searchTerm}&aqi=no`);
+        console.log("Data : ", Data.data);
+        setData(Data.data);
+      }
+      // else if (searchTerm === undefined && data === undefined){
+      //   const Data = await axios.get(`http://api.weatherapi.com/v1/current.json?key=ddd4d75367394afea78144106232912&q=rabat&aqi=no`);
+      //   console.log("Data : ", Data.data);
+      //   setData(Data.data);
+      // }
     }
-    catch(error){
+    catch(error){ // learn some method of error handling
       console.log("error : ", error);
     }
   }
-  // useEffect(() => {
-    
-  // }, []);
+
+  useEffect(() => {
+
+    const emptycase = async () => {
+      if (searchTerm == undefined)
+      { // Learn about debouncing. (this is a good concept)
+        // Why axios and not something else, I already know, it's a rhetorical question.
+        // As in you should be able to explain technological choices in the design document.
+        // Have you ever seen the functions that exist in console. they are often useful.
+        // you can also provide css to your console.log so it loks ddifferent...
+        const Data = await axios.get(`http://api.weatherapi.com/v1/current.json?key=ddd4d75367394afea78144106232912&q=rabat&aqi=no`);
+        console.log("Data : ", Data.data);
+        setData(Data.data);
+      return ;
+      }
+    }
+
+    emptycase();
+    fetchData();
+  }, [searchTerm]);
   
   const HandleOnsearch = (City) => {
-    console.log(City);
+    console.log("city : ", City);
     setSearchTerm(City);
     fetchData();
+    // console.log("DATA : ", data);
   }
 
 
@@ -88,7 +126,7 @@ const Weather = () => {
               </div>
               <div className='ml-60'>
                 <img src={Sun} className="w-[180px] ml-52"/>
-              </div>
+              </div>  
           </div>
           <div className='w-full rounded-2xl bg-slate-800 flex flex-1 flex-wrap m-4'>
             <h2 className='absolute m-4 font-semibold text-gray-500'>TODAY'S FORCAST</h2>
@@ -113,6 +151,7 @@ const Weather = () => {
       </div>
     </div>
   )
-}
+} // overall nice !
+// so am I, wanna sell meth ? let's cook
 
 export default Weather
