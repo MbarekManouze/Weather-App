@@ -20,7 +20,7 @@ const Navbar = ({ onSearch }) => {
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   const handleSearch = () => {
