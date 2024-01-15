@@ -54,9 +54,11 @@ import PsleetP from './PatchySleetPossible.png'
 import PsnowP from './PatchySnowPossible.png'
 import Trainshower from './Torrential-rain-shower.png'
 import clear from './Clear.png'
+import ClearNight from './ClearNight.png'
 
 
 export {
+    ClearNight,
     clear,
     React,
     Weather,
