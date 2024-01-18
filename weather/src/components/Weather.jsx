@@ -163,7 +163,7 @@ const Weather = () => {
         <div className="w-1/2 flex flex-wrap flex-col ">
           <div className='w-full m-4 flex'>
               <div className='flex flex-col'>
-                <h2 className='text-5xl font-bold '>{searchTerm}</h2> <br></br>
+                <h2 className='text-5xl font-bold text-center'>{searchTerm}</h2> <br></br>
                 <p className='font-light text-gray-500'>Chance of rain: {Todayforcast?.day.daily_chance_of_rain} %</p>
                 <br></br>
                 <p className='text-8xl font-bold'>{Current?.temp_c}°</p>
